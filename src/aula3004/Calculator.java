@@ -1,6 +1,8 @@
 package aula3004;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -11,10 +13,10 @@ public class Calculator extends JFrame {
     private JScrollPane jspObservacao;
 
     private String[] caracteres = {
-        "0", " ", "X!", "10^X", "=", 
-        "1", "2", "3", "x^3", "+", 
-        "4", "5", "6", "x2", "-", 
-        "7", "8", "9", "X^Y", "*", 
+        "0", " ", "X!", "10^X", "=",
+        "1", "2", "3", "x^3", "+",
+        "4", "5", "6", "x2", "-",
+        "7", "8", "9", "X^Y", "*",
         "AC/C", "+/-", "%", "RAIZ Q", "/"
     };
 
@@ -26,17 +28,17 @@ public class Calculator extends JFrame {
             botoes[i] = new JButton(caracteres[i]);
         }
 
-        jtxaObservacao = new JTextArea(3, 20);
+        jtxaObservacao = new JTextArea(1, 20);
         jtxaObservacao.setLineWrap(true);
         jtxaObservacao.setWrapStyleWord(true);
+        jtxaObservacao.setFont(new Font("Arial", Font.PLAIN, 30));
 
+        // Corrigido: Crie e configure o JScrollPane apenas uma vez
         jspObservacao = new JScrollPane(jtxaObservacao);
         jspObservacao.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jspObservacao.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
-        jspObservacao = new JScrollPane(jtxaObservacao);
-        
-        LineBorder border = new LineBorder(Color.LIGHT_GRAY, 1); // You can change Color.LIGHT_GRAY and the thickness (1)
+
+        LineBorder border = new LineBorder(Color.LIGHT_GRAY, 20);
         jspObservacao.setBorder(border);
 
         configurarPainel();
@@ -62,6 +64,54 @@ public class Calculator extends JFrame {
         for (int i = 0; i < 25; i++) {
             painelBotoes.add(botoes[i]);
         }
+
+
+        botoes[0].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("0");
+        });
+
+        botoes[5].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("1");
+        });
+
+        botoes[6].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("2");
+        });
+
+        botoes[7].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("3");
+        });
+
+        botoes[10].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("4");
+        });
+
+        botoes[11].addActionListener((ActionEvent e) -> { 
+            jtxaObservacao.append("5");
+        });
+
+        botoes[12].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("6");
+        });
+
+        botoes[15].addActionListener((ActionEvent e) -> { 
+            jtxaObservacao.append("7");
+        });
+
+        botoes[16].addActionListener((ActionEvent e) -> { 
+            jtxaObservacao.append("8");
+        });
+
+        botoes[17].addActionListener((ActionEvent e) -> {
+            jtxaObservacao.append("9");
+        });
+        
+
+        botoes[20].addActionListener((ActionEvent e) -> { 
+            jtxaObservacao.setText("");
+        });
+        
     }
 
+    
 }
